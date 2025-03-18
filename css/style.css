@@ -53,9 +53,10 @@ footer {
 }
 
 .posts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
 }
 
 .post-card {
@@ -63,6 +64,8 @@ footer {
   border: 1px solid #eaeaea;
   border-radius: 5px;
   transition: transform 0.2s, box-shadow 0.2s;
+  width: 100%;
+  display: block;
 }
 
 .post-card:hover {
@@ -72,11 +75,39 @@ footer {
 
 .post-card h2 {
   margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.post-card a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.post-card a:hover {
+  text-decoration: underline;
 }
 
 .post-date {
   color: #666;
   font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.post-excerpt {
+  margin: 1rem 0;
+  line-height: 1.6;
+}
+
+.read-more {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--primary);
+}
+
+.read-more:hover {
+  text-decoration: underline;
 }
 
 .blog-post h1 {
