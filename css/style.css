@@ -110,13 +110,20 @@ footer {
   text-decoration: underline;
 }
 
-.blog-post h1 {
+.post-header {
+  margin-bottom: 2rem;
+}
+
+.post-title {
   margin-top: 0;
   margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  line-height: 1.2;
 }
 
 .blog-post .post-date {
-  margin-bottom: 2rem;
+  color: #666;
+  font-size: 0.9rem;
   display: block;
 }
 
