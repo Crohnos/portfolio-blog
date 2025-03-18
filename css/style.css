@@ -125,6 +125,8 @@ footer {
 
 .post-header {
   margin-bottom: 2.5rem;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 1.5rem;
 }
 
 .post-title {
@@ -134,22 +136,21 @@ footer {
   line-height: 1.2;
 }
 
-.post-meta {
+.post-byline {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-items: center;
-  gap: 1rem;
-}
-
-.post-meta-left {
-  display: flex;
-  flex-wrap: wrap;
   gap: 1.2rem;
-  align-items: center;
+  margin-bottom: 1rem;
 }
 
-.post-author, .post-date, .post-reading-time {
+.post-author {
+  font-style: italic;
+  color: #666;
+  font-size: 0.95rem;
+}
+
+.post-date, .post-reading-time {
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -161,6 +162,7 @@ footer {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+  margin-top: 0.5rem;
 }
 
 .category-badge {
