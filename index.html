@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Blog</title>
+  <meta name="description" content="A personal portfolio and blog site">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/" id="site-title">Portfolio Blog</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main id="app">
+      
+    <h1>Recent Posts</h1>
+    
+    <div class="posts-grid">
+      
+        <article class="post-card">
+          <h2><a href="/post/learning-react.html">Learning React</a></h2>
+          <p class="post-date">10/1/2023</p>
+        </article>
+      
+        <article class="post-card">
+          <h2><a href="/post/my-first-post.html">My First Post</a></h2>
+          <p class="post-date">9/30/2023</p>
+        </article>
+      
+    </div>
+  
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Portfolio Blog</p>
+    </footer>
+  </div>
+  <script>
+    // Simple navigation without page reloads
+    document.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' && !e.target.getAttribute('target')) {
+        const href = e.target.getAttribute('href');
+        if (href.startsWith('/') && !href.startsWith('//')) {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
