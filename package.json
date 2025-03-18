@@ -1,11 +1,21 @@
 {
   "name": "portfolio-blog",
   "module": "index.ts",
-  "type": "module",
+  "type": "commonjs",
   "private": true,
+  "homepage": "https://crohnos.github.io/portfolio-blog",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "node generate-static-site.js",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
   "devDependencies": {
     "@picocss/pico": "^2.1.1",
-    "@types/bun": "latest"
+    "@types/bun": "latest",
+    "gh-pages": "^6.1.1",
+    "nodemon": "^3.1.0"
   },
   "peerDependencies": {
     "typescript": "^5"
@@ -13,9 +23,6 @@
   "dependencies": {
     "express": "^4.21.2",
     "gray-matter": "^4.0.3",
-    "marked": "^15.0.7",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-router-dom": "^7.3.0"
+    "marked": "^15.0.7"
   }
 }
