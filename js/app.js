@@ -28,6 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
   
+  // Initialize mermaid diagrams if available
+  if (typeof mermaid !== 'undefined') {
+    mermaid.init(undefined, '.mermaid');
+  }
+  
   // Smooth scrolling for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -265,6 +270,13 @@ async function postPage(slug) {
         ` : ''}
         
         <div class="post-content">${post.content}</div>
+        
+        <script>
+          // Re-initialize mermaid diagrams on post load
+          if (typeof mermaid !== 'undefined') {
+            setTimeout(() => mermaid.init(undefined, '.mermaid'), 100);
+          }
+        </script>
         
         <div class="post-navigation">
           <a href="/" class="back-link">

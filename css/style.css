@@ -543,6 +543,16 @@ footer a:hover {
   font-size: 0.9em;
 }
 
+/* Mermaid diagram styling */
+.mermaid {
+  margin: var(--spacing-xl) 0;
+  padding: var(--spacing-lg);
+  background-color: var(--background-alt);
+  border-radius: var(--border-radius-md);
+  overflow-x: auto;
+  text-align: center;
+}
+
 .back-link {
   display: inline-flex;
   align-items: center;
