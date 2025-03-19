@@ -86,7 +86,7 @@ async function homePage() {
             </p>
           </div>
           
-          <h2>Recent Posts</h2>
+          <h2>Recent Posts in the form of Harry Potter Fan Fiction</h2>
           
           <div class="no-posts-message">
             <p>No posts found. Check back soon for new content!</p>
@@ -106,7 +106,7 @@ async function homePage() {
           </p>
         </div>
         
-        <h2>Recent Posts</h2>
+        <h2>Recent Posts in the form of Harry Potter Fan Fiction</h2>
         
         <div class="posts-grid">
           ${posts.map(post => {
