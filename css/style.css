@@ -329,20 +329,31 @@ footer a:hover {
 
 /* Gilded Gold Featured Post */
 .featured-post {
+  background: #15243b; /* Dark background for better text contrast */
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md), 0 0 15px rgba(255, 215, 0, 0.3);
+  overflow: hidden;
+  transition: all var(--transition-normal);
+  border: 2px solid var(--gold-primary);
+  padding: var(--spacing-xl);
+  position: relative;
+  color: var(--text-primary);
+}
+
+/* Gold frame and accents instead of full gold background */
+.featured-post::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
   background: var(--gold-gradient);
   background-size: 200% 200%;
   animation: gold-shimmer 6s infinite alternate;
-  border-radius: var(--border-radius-lg);
-  box-shadow: var(--shadow-md), var(--gold-shadow);
-  overflow: hidden;
-  transition: all var(--transition-normal);
-  border: 1px solid var(--gold-primary);
-  padding: var(--spacing-xl);
-  position: relative;
-  color: var(--text-on-light);
 }
 
-/* Shimmering gold effect */
+/* More subtle gold shimmer animation */
 @keyframes gold-shimmer {
   0% {
     background-position: 0% 50%;
@@ -355,33 +366,24 @@ footer a:hover {
   }
 }
 
-/* Elegant ornamental border */
-.featured-post::before {
-  content: '';
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  right: 8px;
-  bottom: 8px;
-  border: 2px solid rgba(184, 134, 11, 0.3);
-  border-radius: var(--border-radius-md);
-  pointer-events: none;
-}
-
+/* Elegant ornamental border that's more subtle */
 .featured-post::after {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 215, 0, 0.1) 100%);
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  border: 1px solid rgba(184, 134, 11, 0.3);
+  border-radius: var(--border-radius-md);
   pointer-events: none;
+  z-index: 0;
 }
 
 .featured-post:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(255, 215, 0, 0.7);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg), 0 0 20px rgba(255, 215, 0, 0.5);
+  border-color: var(--gold-light);
 }
 
 .featured-post-header {
@@ -411,8 +413,7 @@ footer a:hover {
 .featured-post h2 {
   font-size: 2rem;
   margin-bottom: var(--spacing-md);
-  color: var(--gold-dark);
-  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.5);
+  color: var(--gold-primary);
   position: relative;
   z-index: 1;
 }
@@ -431,7 +432,7 @@ footer a:hover {
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--gold-dark);
+  background-color: var(--gold-primary);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.3s ease;
@@ -443,35 +444,41 @@ footer a:hover {
 }
 
 .featured-post .post-card-meta {
-  color: var(--text-on-light);
+  color: var(--text-secondary);
+  z-index: 1;
+  position: relative;
 }
 
 .featured-post .post-author svg, 
 .featured-post .post-date svg, 
 .featured-post .post-reading-time svg {
-  color: var(--gold-dark);
+  color: var(--gold-primary);
 }
 
 .featured-post .post-excerpt {
   font-size: 1.1rem;
   margin: var(--spacing-lg) 0;
-  color: var(--text-on-light);
+  color: var(--text-primary);
   position: relative;
   z-index: 1;
+  background-color: rgba(21, 36, 59, 0.7);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  border-left: 2px solid var(--gold-primary);
 }
 
 .featured-post .category-badge {
-  background-color: rgba(255, 215, 0, 0.2);
-  color: var(--gold-dark);
-  border: 1px solid var(--gold-dark);
+  background-color: rgba(255, 215, 0, 0.15);
+  color: var(--gold-primary);
+  border: 1px solid var(--gold-primary);
   font-weight: 600;
 }
 
 .featured-post .read-more {
   font-size: 1.05rem;
   padding: var(--spacing-sm) var(--spacing-lg);
-  background-color: var(--gold-dark);
-  color: var(--gold-light);
+  background-color: var(--gold-primary);
+  color: var(--text-on-light);
   border-radius: var(--border-radius-md);
   display: inline-flex;
   align-items: center;
@@ -480,15 +487,14 @@ footer a:hover {
   font-weight: 600;
   position: relative;
   z-index: 1;
-  border: 1px solid var(--gold-light);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .featured-post .read-more:hover {
-  background-color: var(--gold-primary);
-  color: var(--text-on-light);
+  background-color: var(--gold-dark);
+  color: var(--text-on-dark);
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 /* Post Card */
