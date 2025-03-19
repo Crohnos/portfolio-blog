@@ -422,29 +422,31 @@ footer a:hover {
   box-shadow: var(--shadow-sm);
   position: relative;
   border-top: 4px solid var(--primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .post-title {
   font-size: 2.8rem;
   line-height: 1.2;
-  margin: var(--spacing-lg) 0;
+  margin: 0 0 var(--spacing-lg);
   color: var(--text-primary);
   text-align: center;
+  width: 100%;
+  order: 1;
 }
 
-.post-meta-container {
+.post-meta {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
   gap: var(--spacing-lg);
-}
-
-.post-byline {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: var(--spacing-lg);
-  margin-bottom: var(--spacing-md);
+  font-size: 0.95rem;
+  color: var(--text-tertiary);
+  margin-bottom: var(--spacing-lg);
+  width: 100%;
+  order: 2;
 }
 
 .post-categories {
@@ -453,6 +455,8 @@ footer a:hover {
   flex-wrap: wrap;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-lg);
+  width: 100%;
+  order: 3;
 }
 
 .post-content {
