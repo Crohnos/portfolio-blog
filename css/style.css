@@ -1,6 +1,12 @@
 :root {
-  --primary: #1095c1;
-  --primary-hover: #0d6d8c;
+  --primary: #3b82f6;           /* Modern blue */
+  --primary-hover: #2563eb;     /* Darker blue */
+  --text-primary: #1f2937;      /* Dark gray for main text */
+  --text-secondary: #4b5563;    /* Medium gray for secondary text */
+  --text-tertiary: #6b7280;     /* Light gray for metadata */
+  --background: #ffffff;        /* White background */
+  --background-alt: #f9fafb;    /* Very light gray background */
+  --border-light: #e5e7eb;      /* Light gray for borders */
 }
 
 .container {
@@ -125,8 +131,12 @@ footer {
 
 .post-header {
   margin-bottom: 2.5rem;
-  border-bottom: 1px solid #eaeaea;
-  padding-bottom: 1.5rem;
+  padding: 2rem;
+  border-radius: 8px;
+  background-color: var(--background);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  position: relative;
+  border-left: 4px solid var(--primary);
   width: 100%;
 }
 
@@ -140,6 +150,9 @@ footer {
   text-align: left;
   border-bottom: none;
   padding-bottom: 0;
+  color: var(--text-primary);
+  font-weight: 700;
+  letter-spacing: -0.02em;
 }
 
 @media (max-width: 768px) {
@@ -162,16 +175,25 @@ footer {
 
 .post-author {
   font-style: italic;
-  color: #666;
+  color: var(--text-tertiary);
   font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
 }
 
 .post-date, .post-reading-time {
   display: flex;
   align-items: center;
   gap: 0.4rem;
-  color: #666;
+  color: var(--text-tertiary);
   font-size: 0.9rem;
+}
+
+.post-author svg, 
+.post-date svg, 
+.post-reading-time svg {
+  color: var(--primary);
 }
 
 .post-categories {
@@ -185,7 +207,7 @@ footer {
   display: inline-block;
   background-color: var(--primary);
   color: white;
-  padding: 0.2rem 0.7rem;
+  padding: 0.25rem 0.75rem;
   border-radius: 2rem;
   font-size: 0.8rem;
   font-weight: 500;
@@ -198,18 +220,71 @@ footer {
 
 .post-content {
   line-height: 1.8;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+
+.post-content p {
+  margin-bottom: 1.5rem;
+}
+
+.post-content h2 {
+  color: var(--text-primary);
+  margin-top: 2.5rem;
+  font-size: 1.8rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.post-content h3 {
+  color: var(--text-primary);
+  margin-top: 2rem;
+  font-size: 1.5rem;
+}
+
+.post-content a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.post-content a:hover {
+  border-bottom-color: var(--primary);
+}
+
+.post-content blockquote {
+  border-left: 4px solid var(--primary);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--text-secondary);
+  font-style: italic;
+}
+
+.post-content code {
+  background-color: var(--background-alt);
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.9em;
 }
 
 .back-link {
   display: inline-block;
   margin-top: 2rem;
+  padding: 0.5rem 1rem;
   color: var(--primary);
+  background-color: var(--background-alt);
   text-decoration: none;
   font-weight: 500;
+  border-radius: 4px;
+  transition: background-color 0.2s, color 0.2s;
+  border: 1px solid var(--border-light);
 }
 
 .back-link:hover {
-  text-decoration: underline;
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
 }
 
 .error {
