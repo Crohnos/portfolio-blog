@@ -7,6 +7,30 @@
   <meta name="description" content="A personal portfolio and blog site">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        flowchart: { useMaxWidth: true }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -67,8 +91,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 </code></pre>
 <p>These render as clickable badges:</p>
-<p><a href="https://www.npmjs.com/package/package-name"><img src="https://img.shields.io/npm/v/package-name.svg" alt="NPM Version"></a>
-<a href="https://travis-ci.org/username/project"><img src="https://travis-ci.org/username/project.svg?branch=master" alt="Build Status"></a></p>
+<p><a href="https://www.npmjs.com/package/package-name"><img src="https://img.shields.io/npm/v/package-name.svg" alt="NPM Version"></a><br><a href="https://travis-ci.org/username/project"><img src="https://travis-ci.org/username/project.svg?branch=master" alt="Build Status"></a></p>
 <h4>Table of Contents</h4>
 <p>For longer READMEs, create a table of contents with anchor links:</p>
 <pre><code class="language-markdown">## Table of Contents
@@ -113,8 +136,7 @@ You can include any Markdown content here.
 <details>
 <summary>Click to expand/collapse</summary>
 
-<p>This content is hidden by default but can be expanded.
-You can include any Markdown content here.</p>
+<p>This content is hidden by default but can be expanded.<br>You can include any Markdown content here.</p>
 <ul>
 <li>Lists</li>
 <li>Code blocks</li>
@@ -203,8 +225,7 @@ graph TD;
 const result = functionName(&#39;example&#39;, 123);
 console.log(result); // Expected output
 </code></pre>
-<p><strong>Notes:</strong>
-Any additional information about edge cases, errors, or considerations.</p>
+<p><strong>Notes:</strong><br>Any additional information about edge cases, errors, or considerations.</p>
 <pre><code>
 ### API Endpoint Documentation
 
@@ -452,6 +473,14 @@ pandoc file.md -o file.docx
 <hr>
 <p><em>What advanced Markdown techniques do you use in your development workflow? Share in the comments below!</em></p>
 </div>
+        <script>
+          // Re-run mermaid on post load
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
         <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
       </article>
     

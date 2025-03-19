@@ -7,6 +7,30 @@
   <meta name="description" content="A personal portfolio and blog site">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        flowchart: { useMaxWidth: true }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -349,6 +373,14 @@ Guard: &quot;Not much for words, are you? Well, it doesn&#39;t matter now.&quot;
 <hr>
 <p><em>What creative intersection do you find most challenging in game development? Are you more of a specialist or a generalist? Share your experiences in the comments below!</em></p>
 </div>
+        <script>
+          // Re-run mermaid on post load
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
         <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
       </article>
     

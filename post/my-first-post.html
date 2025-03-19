@@ -7,6 +7,30 @@
   <meta name="description" content="A personal portfolio and blog site">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        flowchart: { useMaxWidth: true }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -260,8 +284,7 @@ ___
 &lt;email@example.com&gt;
 </code></pre>
 <p>This renders as:</p>
-<p><a href="https://www.example.com">https://www.example.com</a>
-<a href="mailto:email@example.com">email@example.com</a></p>
+<p><a href="https://www.example.com">https://www.example.com</a><br><a href="mailto:email@example.com">email@example.com</a></p>
 <h3>Definition Lists</h3>
 <p>Some Markdown processors support definition lists:</p>
 <pre><code class="language-markdown">Term
@@ -316,6 +339,14 @@ username/repository#123
 <hr>
 <p><em>Did you find this guide helpful? Let me know in the comments!</em></p>
 </div>
+        <script>
+          // Re-run mermaid on post load
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
         <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
       </article>
     

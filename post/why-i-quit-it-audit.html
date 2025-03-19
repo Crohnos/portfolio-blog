@@ -7,6 +7,30 @@
   <meta name="description" content="A personal portfolio and blog site">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
   <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'default',
+        flowchart: { useMaxWidth: true }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
 </head>
 <body>
   <div class="container">
@@ -66,14 +90,16 @@
 <p>The reality, however, looked quite different once I was in the role.</p>
 <h3>The Day-to-Day Reality</h3>
 <p>My typical day as an IT audit senior looked something like this:</p>
-<pre><code class="language-mermaid">graph TD
-    A[Document review meeting: 9-10:30am] --&gt; B[Update control matrices: 10:30am-12pm]
-    B --&gt; C[Lunch while catching up on emails: 12-1pm]
-    C --&gt; D[Client follow-up calls: 1-3pm]
-    D --&gt; E[Prepare status updates for managers: 3-4:30pm]
-    E --&gt; F[Team check-in/planning: 4:30-5pm]
-    F --&gt; G[Address review notes: 5-7pm]
-</code></pre>
+<div class="mermaid">
+graph TD
+    A[Document review meeting: 9-10:30am] --> B[Update control matrices: 10:30am-12pm]
+    B --> C[Lunch while catching up on emails: 12-1pm]
+    C --> D[Client follow-up calls: 1-3pm]
+    D --> E[Prepare status updates for managers: 3-4:30pm]
+    E --> F[Team check-in/planning: 4:30-5pm]
+    F --> G[Address review notes: 5-7pm]
+</div>
+
 <p>On paper, this seems structured and manageable. In practice, it involved:</p>
 <ol>
 <li><strong>Endless documentation</strong>: Producing and reviewing enormous volumes of standardized documents</li>
@@ -339,6 +365,14 @@ console.log(calculateTotal(cart)); // $127.94
 <hr>
 <p><em>Are you considering a career change from IT audit or a similar field? Or have you made a similar transition? I&#39;d love to hear about your experiences in the comments below.</em></p>
 </div>
+        <script>
+          // Re-run mermaid on post load
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
         <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
       </article>
     
