@@ -759,6 +759,7 @@ footer a:hover {
   text-align: center;
   max-width: 95%;
   font-family: var(--font-sans);
+  color: white !important;
 }
 
 .mermaid .node rect,
@@ -771,8 +772,8 @@ footer a:hover {
 }
 
 .mermaid .node text {
-  fill: var(--text-primary) !important;
-  color: var(--text-primary) !important;
+  fill: white !important;
+  color: white !important;
 }
 
 .mermaid .edgePath .path {
@@ -781,14 +782,14 @@ footer a:hover {
 
 .mermaid .edgeLabel {
   background-color: var(--background-alt) !important;
-  color: var(--text-primary) !important;
-  fill: var(--text-primary) !important;
+  color: white !important;
+  fill: white !important;
 }
 
 .mermaid .label {
-  color: var(--text-primary) !important;
+  color: white !important;
   font-family: var(--font-sans) !important;
-  fill: var(--text-primary) !important;
+  fill: white !important;
 }
 
 .back-link {
