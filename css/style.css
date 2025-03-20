@@ -770,6 +770,11 @@ footer a:hover {
   stroke: var(--primary) !important;
 }
 
+.mermaid .node text {
+  fill: var(--text-primary) !important;
+  color: var(--text-primary) !important;
+}
+
 .mermaid .edgePath .path {
   stroke: var(--primary) !important;
 }
@@ -777,11 +782,13 @@ footer a:hover {
 .mermaid .edgeLabel {
   background-color: var(--background-alt) !important;
   color: var(--text-primary) !important;
+  fill: var(--text-primary) !important;
 }
 
 .mermaid .label {
   color: var(--text-primary) !important;
   font-family: var(--font-sans) !important;
+  fill: var(--text-primary) !important;
 }
 
 .back-link {
