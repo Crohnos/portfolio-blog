@@ -762,6 +762,7 @@ footer a:hover {
   color: white !important;
 }
 
+/* Node styling */
 .mermaid .node rect,
 .mermaid .node circle,
 .mermaid .node ellipse,
@@ -771,24 +772,46 @@ footer a:hover {
   stroke: var(--primary) !important;
 }
 
-.mermaid .node text {
+/* This is the most important selector for text inside nodes */
+.mermaid .node text,
+.mermaid .nodeLabel,
+.mermaid text,
+.mermaid .flowchartTitleText,
+.mermaid .nodeText,
+.mermaid .cluster text {
   fill: white !important;
-  color: white !important;
-}
-
-.mermaid .edgePath .path {
-  stroke: var(--primary) !important;
-}
-
-.mermaid .edgeLabel {
-  background-color: var(--background-alt) !important;
-  color: white !important;
-  fill: white !important;
-}
-
-.mermaid .label {
   color: white !important;
   font-family: var(--font-sans) !important;
+  font-weight: normal !important;
+  font-size: 14px !important;
+}
+
+/* Separate rule for labels and texts */
+.mermaid .label,
+.mermaid .labelText,
+.mermaid span,
+.mermaid tspan,
+.mermaid .messageText,
+.mermaid .loopText,
+.mermaid .title {
+  color: white !important;
+  fill: white !important;
+  font-family: var(--font-sans) !important;
+  font-weight: normal !important;
+}
+
+/* Edge styling */
+.mermaid .edgePath .path {
+  stroke: var(--primary) !important;
+  stroke-width: 2 !important;
+}
+
+.mermaid .edgeLabel,
+.mermaid .edgeLabel rect,
+.mermaid .edgeLabel span,
+.mermaid .edgeLabel foreignObject {
+  background-color: var(--background-alt) !important;
+  color: white !important;
   fill: white !important;
 }
 

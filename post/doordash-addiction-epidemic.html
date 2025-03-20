@@ -16,11 +16,25 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Initialize mermaid
+      // Initialize mermaid with custom theme for white text
       mermaid.initialize({
         startOnLoad: true,
-        theme: 'default',
-        flowchart: { useMaxWidth: true }
+        theme: 'dark',
+        themeVariables: {
+          nodeBorder: '#4d80e4',
+          mainBkg: '#1e3a5f',
+          nodeTextColor: '#ffffff',
+          textColor: '#ffffff',
+          labelTextColor: '#ffffff',
+          clusterBkg: '#1e293b',
+          clusterBorder: '#2d3748',
+          edgeLabelBackground: '#1e293b',
+          lineColor: '#4d80e4'
+        },
+        flowchart: { 
+          useMaxWidth: true,
+          htmlLabels: true
+        }
       });
       
       // Initialize syntax highlighting
@@ -332,9 +346,28 @@
 <p><em>Have you experienced delivery app dependence? What strategies have helped you maintain a healthier relationship with convenience services? Share your experiences in the comments below.</em></p>
 </div>
         <script>
-          // Re-run mermaid on post load
+          // Re-run mermaid on post load with custom theme settings
           if (typeof mermaid !== 'undefined') {
             document.addEventListener('DOMContentLoaded', function() {
+              // Make sure chart text is white on dark background
+              mermaid.initialize({
+                theme: 'dark',
+                themeVariables: {
+                  nodeBorder: '#4d80e4',
+                  mainBkg: '#1e3a5f',
+                  nodeTextColor: '#ffffff',
+                  textColor: '#ffffff',
+                  labelTextColor: '#ffffff',
+                  clusterBkg: '#1e293b',
+                  clusterBorder: '#2d3748',
+                  edgeLabelBackground: '#1e293b',
+                  lineColor: '#4d80e4'
+                },
+                flowchart: { 
+                  useMaxWidth: true,
+                  htmlLabels: true
+                }
+              });
               mermaid.init(undefined, '.mermaid');
             });
           }
