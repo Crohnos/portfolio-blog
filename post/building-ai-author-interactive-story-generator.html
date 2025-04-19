@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building AI-Author: My Journey Creating an Interactive Story Generator</title>
+  <meta name="description" content="A personal portfolio and blog site">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid with custom theme for white text
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          nodeBorder: '#4d80e4',
+          mainBkg: '#1e3a5f',
+          nodeTextColor: '#ffffff',
+          textColor: '#ffffff',
+          labelTextColor: '#ffffff',
+          clusterBkg: '#1e293b',
+          clusterBorder: '#2d3748',
+          edgeLabelBackground: '#1e293b',
+          lineColor: '#4d80e4'
+        },
+        flowchart: { 
+          useMaxWidth: true,
+          htmlLabels: true
+        }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/portfolio-blog/" id="site-title">Portfolio Blog</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/portfolio-blog/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main id="app">
+      
+      <article class="blog-post">
+        <header class="post-header">
+          <h1 class="post-title">Building AI-Author: My Journey Creating an Interactive Story Generator</h1>
+          <div class="post-meta">
+            <div class="post-author">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>John Graham</span>
+            </div>
+            <div class="post-date">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>April 18, 2025</span>
+            </div>
+            <div class="post-reading-time">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>5 min read</span>
+            </div>
+          </div>
+          <div class="post-categories">
+            <span class="category-badge">Web Development</span><span class="category-badge">AI</span><span class="category-badge">Full Stack</span>
+          </div>
+        </header>
+        <div class="post-content">
+<p>When I set out to build AI-Author, I had a clear vision: create a platform where users could generate personalized stories with the help of AI. The project would not only showcase modern web development practices but also explore the creative possibilities of AI-assisted storytelling.</p>
+<h2>The Problem It Solves</h2>
+<p>As a developer who enjoys creative writing, I&#39;ve always been fascinated by the intersection of technology and storytelling. The traditional writing process can be time-consuming and sometimes hindered by writer&#39;s block. I wanted to create a tool that could:</p>
+<ol>
+<li>Help users generate unique stories based on their preferences</li>
+<li>Provide a platform to save and revisit these stories</li>
+<li>Make the creative writing process more accessible to everyone</li>
+</ol>
+<p>AI-Author addresses these needs by offering a user-friendly interface where anyone can input parameters like genre, setting, and characters, then receive a fully-formed story in seconds.</p>
+<h2>Technical Design Decisions</h2>
+<h3>Why React 19 + TypeScript for the Frontend</h3>
+<p>I chose React 19 for the frontend because of its robust component model and the new features like automatic batching and improved Suspense support. Pairing it with TypeScript was a no-brainer – the type safety it provides has saved me countless hours of debugging, especially when working with complex state management and API responses.</p>
+<p>For state management, I implemented Zustand instead of Redux. The decision came down to Zustand&#39;s simplicity and reduced boilerplate while still providing powerful state management capabilities. This was particularly important for managing the story generation parameters and user library.</p>
+<h3>Bun + Express + SQLite for the Backend</h3>
+<p>For the backend, I wanted something lightweight yet powerful. Express has been my go-to for API development, and pairing it with Bun provided significant performance improvements over traditional Node.js. The SQLite database was perfect for this project – it&#39;s simple to set up, requires no separate server, and provides all the relational database features needed for storing user accounts and stories.</p>
+<p>One of the most interesting aspects was integrating with Anthropic&#39;s Claude API for story generation. The challenge was crafting prompts that would consistently produce high-quality, coherent narratives while still incorporating the user&#39;s parameters.</p>
+<h2>Challenges Encountered</h2>
+<h3>Prompt Engineering Complexity</h3>
+<p>The biggest challenge was definitely the prompt engineering. Getting consistent, high-quality stories required extensive experimentation with the prompting technique. I learned that providing clear structural guidelines to the AI yielded much better results than open-ended prompts.</p>
+<p>For example, instead of just asking for &quot;a fantasy story,&quot; I created a structured prompt template that specified narrative elements like introduction, conflict, character development, and resolution. This approach dramatically improved the coherence and quality of the generated stories.</p>
+<h3>Managing Generation Parameters</h3>
+<p>Another challenge was determining the right balance of parameters to expose to users. Too few options would limit creativity, while too many would overwhelm users and potentially confuse the AI model.</p>
+<p>I settled on a curated set of parameters including genre, setting, tone, protagonist traits, and antagonist traits. This provided enough customization without becoming unwieldy. Behind the scenes, these parameters are translated into a sophisticated prompt that guides the AI&#39;s generation process.</p>
+<h3>Responsive UI Design</h3>
+<p>Creating an immersive reading experience that worked across all device sizes required careful design considerations. I wanted the application to feel like a digital book when reading stories, but also maintain usability on mobile devices.</p>
+<p>The solution was a responsive design using PicoCSS, with special attention to typography, line height, and reading width. For mobile, I implemented a simplified interface with touch-friendly controls.</p>
+<h2>Future Improvements</h2>
+<p>There&#39;s still so much potential to expand AI-Author:</p>
+<ol>
+<li><strong>Branching Narratives</strong>: Allowing users to influence the story direction at key points</li>
+<li><strong>Character Illustrations</strong>: Generating AI images of characters to accompany the stories</li>
+<li><strong>Audio Narration</strong>: Text-to-speech functionality to listen to stories</li>
+<li><strong>Collaborative Writing</strong>: Enabling users to work with the AI to co-write stories</li>
+</ol>
+<p>The framework I&#39;ve built is flexible enough to accommodate these features, with the main architecture already supporting extension points.</p>
+<h2>Lessons Learned</h2>
+<p>Building AI-Author reinforced several key development principles:</p>
+<ol>
+<li><strong>Start with a Clear User Story</strong>: Understanding exactly what problem I was solving helped focus development efforts</li>
+<li><strong>Prototype Early and Often</strong>: Testing various prompting techniques early saved time later</li>
+<li><strong>Type Safety Pays Off</strong>: TypeScript&#39;s rigor caught numerous potential issues before they became problems</li>
+<li><strong>Modern Tools Boost Productivity</strong>: The combination of Bun, React 19, and modern state management made development significantly faster</li>
+</ol>
+<p>The most important lesson was about the power of properly configured AI prompts. The same AI model could produce drastically different results depending on how the prompts were structured – showcasing that the &quot;interface&quot; to AI systems is as important as the model itself.</p>
+<p>AI-Author represents not just a technical achievement, but a glimpse into how AI can enhance creative processes rather than replace them. It&#39;s a tool that augments human creativity, providing a springboard for ideas while keeping the user in control of the final outcome.</p>
+<p>As AI technology continues to evolve, I&#39;m excited to see how projects like this can bridge the gap between technical capability and creative expression.</p>
+</div>
+        <script>
+          // Re-run mermaid on post load with custom theme settings
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              // Make sure chart text is white on dark background
+              mermaid.initialize({
+                theme: 'dark',
+                themeVariables: {
+                  nodeBorder: '#4d80e4',
+                  mainBkg: '#1e3a5f',
+                  nodeTextColor: '#ffffff',
+                  textColor: '#ffffff',
+                  labelTextColor: '#ffffff',
+                  clusterBkg: '#1e293b',
+                  clusterBorder: '#2d3748',
+                  edgeLabelBackground: '#1e293b',
+                  lineColor: '#4d80e4'
+                },
+                flowchart: { 
+                  useMaxWidth: true,
+                  htmlLabels: true
+                }
+              });
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
+        <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
+      </article>
+    
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Portfolio Blog</p>
+    </footer>
+  </div>
+  <script>
+    // Simple navigation without page reloads
+    document.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' && !e.target.getAttribute('target')) {
+        const href = e.target.getAttribute('href');
+        if (href.startsWith('/') && !href.startsWith('//')) {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

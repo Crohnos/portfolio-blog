@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Creating an Internal Merchandise Store: Simplifying Company Swag Distribution</title>
+  <meta name="description" content="A personal portfolio and blog site">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid with custom theme for white text
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          nodeBorder: '#4d80e4',
+          mainBkg: '#1e3a5f',
+          nodeTextColor: '#ffffff',
+          textColor: '#ffffff',
+          labelTextColor: '#ffffff',
+          clusterBkg: '#1e293b',
+          clusterBorder: '#2d3748',
+          edgeLabelBackground: '#1e293b',
+          lineColor: '#4d80e4'
+        },
+        flowchart: { 
+          useMaxWidth: true,
+          htmlLabels: true
+        }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/portfolio-blog/" id="site-title">Portfolio Blog</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/portfolio-blog/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main id="app">
+      
+      <article class="blog-post">
+        <header class="post-header">
+          <h1 class="post-title">Creating an Internal Merchandise Store: Simplifying Company Swag Distribution</h1>
+          <div class="post-meta">
+            <div class="post-author">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>John Graham</span>
+            </div>
+            <div class="post-date">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>April 18, 2025</span>
+            </div>
+            <div class="post-reading-time">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>5 min read</span>
+            </div>
+          </div>
+          <div class="post-categories">
+            <span class="category-badge">Web Development</span><span class="category-badge">React</span><span class="category-badge">Enterprise Solutions</span>
+          </div>
+        </header>
+        <div class="post-content">
+<p>Company merchandise is more than just branded swag—it&#39;s a tangible expression of company culture and team unity. However, distributing company merchandise efficiently within an organization presents unique challenges that off-the-shelf e-commerce solutions don&#39;t adequately address. This is what led me to build a specialized Internal Merchandise Store application.</p>
+<h2>The Problem It Solves</h2>
+<p>Before implementing this solution, the company&#39;s merchandise distribution process was fragmented and inefficient:</p>
+<ol>
+<li>Merchandise requests were handled through email or spreadsheet forms</li>
+<li>Inventory tracking was manual and often inaccurate</li>
+<li>The finance department struggled to properly account for merchandise costs</li>
+<li>Employees had no easy way to browse available items</li>
+<li>Distribution relied on physical handoffs and manual record-keeping</li>
+</ol>
+<p>The Internal Merchandise Store addresses these pain points by providing:</p>
+<ul>
+<li>A centralized platform for browsing and ordering company merchandise</li>
+<li>Automated inventory tracking and management</li>
+<li>Integration with payroll for seamless deduction processing</li>
+<li>An admin dashboard for merchandise management and order fulfillment</li>
+<li>Role-based access control for different administrative functions</li>
+</ul>
+<h2>Technical Design Decisions</h2>
+<h3>Why React + TypeScript Frontend</h3>
+<p>I chose React for the frontend because of its component-based architecture, which allowed for rapid development and easy maintenance. The decision to use TypeScript was driven by the need for reliability in an internal business application:</p>
+<ol>
+<li>Type safety prevents common runtime errors</li>
+<li>Interface definitions create clear contracts between components</li>
+<li>Better IDE integration improves developer productivity</li>
+<li>Self-documenting code reduces maintenance burden</li>
+</ol>
+<p>This combination provided the perfect balance of development speed and application reliability, especially important for an internal tool that needs to &quot;just work&quot; without dedicated support staff.</p>
+<h3>Lightweight CSS with PicoCSS</h3>
+<p>Rather than implement a heavy UI framework like Material UI or Bootstrap, I opted for PicoCSS—a minimalist CSS framework that provides sensible defaults while staying out of the way. This decision:</p>
+<ol>
+<li>Reduced bundle size for better performance</li>
+<li>Avoided framework lock-in and unnecessary complexity</li>
+<li>Allowed for rapid styling without fighting against a framework&#39;s opinions</li>
+<li>Created a clean, professional interface without excessive styling</li>
+</ol>
+<p>The resulting UI is straightforward and functional—exactly what&#39;s needed for an internal business application.</p>
+<h3>Express + SQLite Backend</h3>
+<p>The backend architecture prioritizes simplicity and maintainability over cutting-edge features. Express provides a familiar, well-documented API framework, while SQLite offers a lightweight database solution that:</p>
+<ol>
+<li>Requires no separate database server</li>
+<li>Simplifies deployment and backups</li>
+<li>Provides sufficient performance for the expected load</li>
+<li>Offers full relational database capabilities without administration overhead</li>
+</ol>
+<p>For an internal application with predictable usage patterns, this stack provides all the necessary functionality without unnecessary operational complexity.</p>
+<h3>TypeScript Across the Stack</h3>
+<p>Using TypeScript on both frontend and backend created a cohesive development experience with shared type definitions. This approach:</p>
+<ol>
+<li>Ensures API contracts are consistently enforced</li>
+<li>Reduces errors when passing data between systems</li>
+<li>Improves developer confidence when making changes</li>
+<li>Creates natural documentation through type annotations</li>
+</ol>
+<p>The result is a more maintainable codebase that future developers can confidently modify without fear of breaking changes.</p>
+<h2>Challenges Encountered</h2>
+<h3>Role-Based Access Control</h3>
+<p>One of the most complex aspects of the application was implementing appropriate role-based access control. The store needed different permission levels for:</p>
+<ul>
+<li>Regular employees (browsing and ordering only)</li>
+<li>Merchandise managers (inventory and catalog management)</li>
+<li>Order fulfillment staff (order processing and status updates)</li>
+<li>Administrators (user management and reporting)</li>
+</ul>
+<p>The solution involved creating a flexible permission system with:</p>
+<ol>
+<li>Hierarchical roles with inheritance</li>
+<li>Granular permissions that can be assigned to roles</li>
+<li>Route-level middleware for access control</li>
+<li>Component-level conditional rendering based on permissions</li>
+</ol>
+<p>This approach ensures that users only see and access functionality relevant to their role while keeping the authorization logic manageable.</p>
+<h3>Inventory Availability Logic</h3>
+<p>Another challenging aspect was managing inventory availability across different office locations with varying item types and sizes. The data model needed to account for:</p>
+<ol>
+<li>Multiple physical locations with separate inventories</li>
+<li>Items with size variations (e.g., S, M, L, XL for clothing)</li>
+<li>Limited-edition items with restricted availability</li>
+<li>Reserved items awaiting pickup</li>
+</ol>
+<p>I implemented a flexible availability system that tracks inventory at the intersection of item, size, and location. This allowed for precise inventory control while providing employees with accurate availability information when ordering.</p>
+<h3>Order Processing Workflow</h3>
+<p>Creating an efficient order processing workflow required careful consideration of the physical fulfillment process. The system needed to track orders through multiple states:</p>
+<ol>
+<li>Submitted (initial state)</li>
+<li>Processing (picked for fulfillment)</li>
+<li>Ready for pickup (awaiting employee collection)</li>
+<li>Completed (delivered to employee)</li>
+<li>Canceled (either by employee or administrator)</li>
+</ol>
+<p>Each state transition triggered appropriate notifications and inventory updates, ensuring that the digital and physical processes remained synchronized.</p>
+<h2>Future Improvements</h2>
+<p>While the current implementation successfully addresses the core requirements, several enhancements could further improve the system:</p>
+<ol>
+<li><strong>Integration with HR Systems</strong>: Automatically updating employee information and department allocations</li>
+<li><strong>Advanced Analytics Dashboard</strong>: Providing insights into popular items and ordering patterns</li>
+<li><strong>Budget Management</strong>: Allowing departments to set and track merchandise budgets</li>
+<li><strong>Event-Based Collections</strong>: Creating limited-time merchandise collections tied to company events</li>
+<li><strong>Mobile App</strong>: Developing a companion mobile application for easier browsing and order tracking</li>
+</ol>
+<p>The modular architecture was designed with these potential enhancements in mind, allowing for incremental improvements without major refactoring.</p>
+<h2>Lessons Learned</h2>
+<p>This project reinforced several important principles about building internal business applications:</p>
+<ol>
+<li><p><strong>Focus on user workflows, not just features</strong>: Understanding how employees and administrators actually work led to more intuitive interfaces.</p>
+</li>
+<li><p><strong>Simplicity trumps sophistication</strong>: Choosing simpler technologies that just work proved more valuable than implementing cutting-edge solutions.</p>
+</li>
+<li><p><strong>Performance matters even for internal tools</strong>: Employees have limited patience for slow applications, even when they&#39;re required to use them.</p>
+</li>
+<li><p><strong>Admin interfaces deserve thoughtful design</strong>: Administrative users spend significant time in the system and benefit greatly from well-designed interfaces.</p>
+</li>
+</ol>
+<p>The Internal Merchandise Store has transformed what was once an administrative burden into a streamlined, enjoyable process for both employees and administrators. By understanding the specific needs of an internal merchandise distribution system rather than forcing a generic e-commerce solution to fit, the application delivers exactly what the company needed—no more, no less.</p>
+</div>
+        <script>
+          // Re-run mermaid on post load with custom theme settings
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              // Make sure chart text is white on dark background
+              mermaid.initialize({
+                theme: 'dark',
+                themeVariables: {
+                  nodeBorder: '#4d80e4',
+                  mainBkg: '#1e3a5f',
+                  nodeTextColor: '#ffffff',
+                  textColor: '#ffffff',
+                  labelTextColor: '#ffffff',
+                  clusterBkg: '#1e293b',
+                  clusterBorder: '#2d3748',
+                  edgeLabelBackground: '#1e293b',
+                  lineColor: '#4d80e4'
+                },
+                flowchart: { 
+                  useMaxWidth: true,
+                  htmlLabels: true
+                }
+              });
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
+        <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
+      </article>
+    
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Portfolio Blog</p>
+    </footer>
+  </div>
+  <script>
+    // Simple navigation without page reloads
+    document.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' && !e.target.getAttribute('target')) {
+        const href = e.target.getAttribute('href');
+        if (href.startsWith('/') && !href.startsWith('//')) {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

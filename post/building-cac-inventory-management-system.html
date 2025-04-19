@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Building a Specialized Inventory Management System for Non-Profits</title>
+  <meta name="description" content="A personal portfolio and blog site">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid with custom theme for white text
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          nodeBorder: '#4d80e4',
+          mainBkg: '#1e3a5f',
+          nodeTextColor: '#ffffff',
+          textColor: '#ffffff',
+          labelTextColor: '#ffffff',
+          clusterBkg: '#1e293b',
+          clusterBorder: '#2d3748',
+          edgeLabelBackground: '#1e293b',
+          lineColor: '#4d80e4'
+        },
+        flowchart: { 
+          useMaxWidth: true,
+          htmlLabels: true
+        }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/portfolio-blog/" id="site-title">Portfolio Blog</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/portfolio-blog/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main id="app">
+      
+      <article class="blog-post">
+        <header class="post-header">
+          <h1 class="post-title">Building a Specialized Inventory Management System for Non-Profits</h1>
+          <div class="post-meta">
+            <div class="post-author">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>John Graham</span>
+            </div>
+            <div class="post-date">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>April 18, 2025</span>
+            </div>
+            <div class="post-reading-time">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>6 min read</span>
+            </div>
+          </div>
+          <div class="post-categories">
+            <span class="category-badge">Web Development</span><span class="category-badge">TypeScript</span><span class="category-badge">Non-Profit Solutions</span>
+          </div>
+        </header>
+        <div class="post-content">
+<p>When I first met with the Community Aid Center (CAC), they described a common challenge faced by many non-profits: tracking donated inventory effectively with limited resources. After seeing volunteers manually recording items in spreadsheets and struggling with inventory discrepancies, I knew there was an opportunity to create a specialized solution that could dramatically improve their operations.</p>
+<h2>The Problem It Solves</h2>
+<p>Non-profit inventory management differs significantly from retail or warehouse inventory systems. The CAC needed to track:</p>
+<ol>
+<li>Irregular, unpredictable donation inflows</li>
+<li>Item condition and categorization</li>
+<li>Storage locations across multiple facilities</li>
+<li>Item distribution to those in need</li>
+<li>Donor and recipient information</li>
+</ol>
+<p>Existing inventory systems were either too expensive, too complex, or designed for retail environments with features the CAC didn&#39;t need while missing critical functionality they required.</p>
+<p>My solution addresses these unique needs by providing:</p>
+<ul>
+<li>A straightforward interface focused on donation intake and distribution</li>
+<li>QR code generation for quickly identifying and updating items</li>
+<li>Photo documentation to evaluate item condition</li>
+<li>Flexible categorization to accommodate diverse donated goods</li>
+<li>Location tracking across multiple storage facilities</li>
+<li>Simple import/export functionality for reporting and backup</li>
+</ul>
+<h2>Technical Design Decisions</h2>
+<h3>TypeScript End-to-End</h3>
+<p>I chose TypeScript for both frontend and backend development, creating a cohesive type system throughout the entire application. This decision paid dividends in several ways:</p>
+<ol>
+<li>Shared type definitions between frontend and backend prevented API mismatches</li>
+<li>Enhanced developer confidence when making changes</li>
+<li>Better IDE support with autocompletion and error detection</li>
+<li>Reduced runtime errors, especially important for volunteer users</li>
+</ol>
+<p>For a non-profit with limited IT support, having a stable, error-resistant system was crucial, making TypeScript&#39;s stricter type checking well worth the initial development investment.</p>
+<h3>Bun Runtime for Performance</h3>
+<p>Using Bun as the JavaScript/TypeScript runtime was a somewhat experimental choice, but one that has paid off significantly. The performance benefits were immediately noticeable, with API response times drastically improved compared to traditional Node.js. This matters particularly for QR code scanning operations that need to feel instantaneous when used in busy donation intake scenarios.</p>
+<p>The built-in TypeScript support also simplified the development workflow, eliminating the need for separate compilation steps and allowing for a more streamlined deployment process.</p>
+<h3>SQLite for Simplicity and Portability</h3>
+<p>While many inventory systems default to more complex database solutions, I chose SQLite for several practical reasons:</p>
+<ol>
+<li>Easy backup — the entire database is a single file</li>
+<li>No separate database server to maintain</li>
+<li>Minimal configuration and administration</li>
+<li>Sufficient performance for the expected data volume</li>
+</ol>
+<p>This choice dramatically simplified deployment and ensured that the organization could easily manage backups with minimal technical knowledge.</p>
+<h3>QR Code Integration</h3>
+<p>The QR code system is perhaps the most transformative feature of the application. Each item receives a unique QR code that can be printed on a label. Volunteers can then use any smartphone or tablet to scan these codes and instantly access or update item information.</p>
+<p>This dramatically speeds up the inventory process and reduces errors compared to manual entry. Implementing this required careful consideration of the scan-to-action workflow and ensuring that the scanning interface was intuitive even for less tech-savvy volunteers.</p>
+<h2>Challenges Encountered</h2>
+<h3>Offline Capability Needs</h3>
+<p>One significant challenge emerged during early testing: many donation intake and inventory checks occurred in locations with poor internet connectivity. The initial web-only implementation struggled in these environments.</p>
+<p>While a full offline-first architecture was beyond the project&#39;s scope, I implemented a compromise solution:</p>
+<ol>
+<li>QR code scanning that works without an internet connection</li>
+<li>Local caching of recently viewed items</li>
+<li>Batch update capability for synchronizing changes when connectivity is restored</li>
+</ol>
+<p>This approach met the essential needs without the complexity of a fully offline-capable application.</p>
+<h3>User Experience for Diverse Users</h3>
+<p>The CAC&#39;s volunteer base spans a wide range of technical abilities, from tech-savvy college students to retirees with limited computer experience. Creating an interface that worked for everyone required careful design consideration.</p>
+<p>I addressed this through:</p>
+<ol>
+<li>Clear, consistent navigation patterns</li>
+<li>Large, touch-friendly controls that work well on both desktop and mobile</li>
+<li>Progressive disclosure of advanced features</li>
+<li>Inline help and tooltips</li>
+<li>Forgiving error handling with clear recovery paths</li>
+</ol>
+<p>User testing with the actual volunteer base was invaluable in refining these aspects of the application.</p>
+<h3>Data Migration</h3>
+<p>The CAC had years of existing inventory data in spreadsheets with inconsistent formats. Rather than requiring a one-time perfect migration, I built a flexible import system that:</p>
+<ol>
+<li>Validates data during import and provides clear error messages</li>
+<li>Allows partial imports to handle data in chunks</li>
+<li>Maintains an audit trail of imported records</li>
+<li>Provides flexible field mapping to accommodate various spreadsheet formats</li>
+</ol>
+<p>This approach allowed the organization to gradually migrate their historical data while starting to use the new system immediately.</p>
+<h2>Future Improvements</h2>
+<p>The current system meets the CAC&#39;s core needs, but there are several enhancements planned for future iterations:</p>
+<ol>
+<li><strong>Enhanced Reporting</strong>: More sophisticated analytics on donation patterns and distribution</li>
+<li><strong>Donor Portal</strong>: A simplified interface for donors to see the impact of their contributions</li>
+<li><strong>Integration with other Non-profit Tools</strong>: Connecting with donor management and financial systems</li>
+<li><strong>Multi-language Support</strong>: Adding language options to support diverse volunteer and client populations</li>
+<li><strong>Native Mobile App</strong>: Converting the mobile web experience to a downloadable app for improved offline capabilities</li>
+</ol>
+<p>The modular architecture was designed with these enhancements in mind, allowing for incremental improvements without major rewrites.</p>
+<h2>Lessons Learned</h2>
+<p>This project reinforced several important principles about building specialized software:</p>
+<ol>
+<li><p><strong>Domain-specific solutions outperform generic ones</strong>: By focusing exclusively on the unique aspects of non-profit inventory management, the resulting system is both simpler and more effective than adapted retail solutions.</p>
+</li>
+<li><p><strong>User diversity requires design flexibility</strong>: Creating interfaces that work for users with varying technical skills forced a focus on fundamental usability principles that ultimately benefited all users.</p>
+</li>
+<li><p><strong>Practical constraints drive innovation</strong>: Working within the CAC&#39;s limited IT infrastructure led to creative solutions that were ultimately more sustainable than more complex alternatives.</p>
+</li>
+<li><p><strong>Type safety creates long-term efficiency</strong>: The investment in TypeScript and strong typing paid off through reduced bugs and easier maintenance, especially important for applications that may not have dedicated developers long-term.</p>
+</li>
+</ol>
+<p>The CAC Inventory Management System stands as a testament to the impact that thoughtfully designed software can have for non-profit organizations. By eliminating hours of manual inventory work, the system allows the CAC to focus more resources on their actual mission: helping those in need in their community.</p>
+</div>
+        <script>
+          // Re-run mermaid on post load with custom theme settings
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              // Make sure chart text is white on dark background
+              mermaid.initialize({
+                theme: 'dark',
+                themeVariables: {
+                  nodeBorder: '#4d80e4',
+                  mainBkg: '#1e3a5f',
+                  nodeTextColor: '#ffffff',
+                  textColor: '#ffffff',
+                  labelTextColor: '#ffffff',
+                  clusterBkg: '#1e293b',
+                  clusterBorder: '#2d3748',
+                  edgeLabelBackground: '#1e293b',
+                  lineColor: '#4d80e4'
+                },
+                flowchart: { 
+                  useMaxWidth: true,
+                  htmlLabels: true
+                }
+              });
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
+        <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
+      </article>
+    
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Portfolio Blog</p>
+    </footer>
+  </div>
+  <script>
+    // Simple navigation without page reloads
+    document.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' && !e.target.getAttribute('target')) {
+        const href = e.target.getAttribute('href');
+        if (href.startsWith('/') && !href.startsWith('//')) {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      }
+    });
+  </script>
+</body>
+</html>

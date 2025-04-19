@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Developing a Job Application Tracker for The Joshua Center</title>
+  <meta name="description" content="A personal portfolio and blog site">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+  <link rel="stylesheet" href="/portfolio-blog/css/style.css">
+  
+  <!-- Code highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+  
+  <!-- Mermaid.js for diagrams -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize mermaid with custom theme for white text
+      mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        themeVariables: {
+          nodeBorder: '#4d80e4',
+          mainBkg: '#1e3a5f',
+          nodeTextColor: '#ffffff',
+          textColor: '#ffffff',
+          labelTextColor: '#ffffff',
+          clusterBkg: '#1e293b',
+          clusterBorder: '#2d3748',
+          edgeLabelBackground: '#1e293b',
+          lineColor: '#4d80e4'
+        },
+        flowchart: { 
+          useMaxWidth: true,
+          htmlLabels: true
+        }
+      });
+      
+      // Initialize syntax highlighting
+      if (typeof hljs !== 'undefined') {
+        document.querySelectorAll('pre code:not(.language-mermaid)').forEach((block) => {
+          hljs.highlightBlock(block);
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/portfolio-blog/" id="site-title">Portfolio Blog</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/portfolio-blog/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <main id="app">
+      
+      <article class="blog-post">
+        <header class="post-header">
+          <h1 class="post-title">Developing a Job Application Tracker for The Joshua Center</h1>
+          <div class="post-meta">
+            <div class="post-author">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                <circle cx="12" cy="7" r="4"></circle>
+              </svg>
+              <span>John Graham</span>
+            </div>
+            <div class="post-date">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              <span>April 18, 2025</span>
+            </div>
+            <div class="post-reading-time">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>5 min read</span>
+            </div>
+          </div>
+          <div class="post-categories">
+            <span class="category-badge">Web Development</span><span class="category-badge">React</span><span class="category-badge">Non-Profit Solutions</span>
+          </div>
+        </header>
+        <div class="post-content">
+<p>When The Joshua Center approached me about building a job application tracking system, I saw an opportunity to create something that would genuinely help both the organization and the people they serve. Non-profits often rely on outdated, generic software solutions that don&#39;t quite fit their specific needs. My goal was to change that with a purpose-built application.</p>
+<h2>The Problem It Solves</h2>
+<p>The Joshua Center helps individuals from disadvantaged backgrounds find employment opportunities. Previously, they were using a combination of Google Forms, spreadsheets, and manual record-keeping to track applicant information. This led to several issues:</p>
+<ol>
+<li>Disjointed application process requiring multiple platforms</li>
+<li>Difficulty tracking application status and history</li>
+<li>Cumbersome review process for staff members</li>
+<li>No centralized system for document management</li>
+</ol>
+<p>The Job Application Tracker solves these problems by providing a unified platform where:</p>
+<ul>
+<li>Applicants can submit their information through a guided, multi-step form</li>
+<li>Staff can easily review, sort, and manage applications</li>
+<li>All documents are stored centrally and securely</li>
+<li>Application status can be tracked through the entire process</li>
+</ul>
+<h2>Why I Built It This Way</h2>
+<h3>Multi-Page Form with React Router</h3>
+<p>One of the key design decisions was creating a multi-page form rather than a single long form. This approach breaks the application process into manageable chunks, reducing the cognitive load on applicants who might be filling out job applications for the first time or have limited computer experience.</p>
+<p>I implemented this using React Router, which allowed for:</p>
+<ul>
+<li>Progress tracking between form steps</li>
+<li>The ability to save progress and continue later</li>
+<li>Validation at each step before proceeding</li>
+<li>A cleaner, less intimidating user interface</li>
+</ul>
+<h3>State Management with Zustand</h3>
+<p>For state management, I chose Zustand over Redux. Why? The Joshua Center staff needed a solution that was easy to maintain and potentially extend in the future. Zustand&#39;s simpler API and reduced boilerplate made it ideal for this use case.</p>
+<p>This choice proved particularly valuable when implementing the form&#39;s save and resume functionality. The lightweight nature of Zustand made it easy to persist form state to localStorage and restore it when needed.</p>
+<h3>SQLite for Simplicity and Portability</h3>
+<p>The backend database is built on SQLite rather than a more complex system like PostgreSQL or MySQL. This decision was driven by several practical considerations:</p>
+<ol>
+<li>The application doesn&#39;t require complex relational queries or massive scalability</li>
+<li>SQLite&#39;s file-based nature makes backup and migration straightforward</li>
+<li>It significantly reduces hosting costs for the non-profit</li>
+<li>Deployment and maintenance are simplified for an organization with limited IT resources</li>
+</ol>
+<h3>Google OAuth for Authentication</h3>
+<p>Implementing Google OAuth for authentication was another pragmatic choice. Most users already have Google accounts, which eliminates the friction of creating new credentials. It also provides robust security without requiring me to implement password management, recovery flows, and other authentication complexities.</p>
+<h2>Challenges Encountered</h2>
+<h3>Form State Persistence</h3>
+<p>One of the biggest challenges was implementing a reliable save-and-resume feature. Many applicants might need to gather documents or information during the application process, and I didn&#39;t want them to lose progress.</p>
+<p>The solution combined Zustand for state management with localStorage for persistence. Each form component subscribes only to the slice of state it needs, minimizing re-renders and keeping the application snappy even on older devices.</p>
+<h3>PDF Upload and Management</h3>
+<p>Another significant challenge was handling document uploads, particularly resumes. The requirements included:</p>
+<ul>
+<li>Accepting and validating PDF files</li>
+<li>Storing them securely</li>
+<li>Making them easily accessible for staff review</li>
+<li>All while keeping the file sizes manageable</li>
+</ul>
+<p>I implemented a custom upload component with client-side validation and progress indication. On the server side, I used Express middleware to handle file storage and implemented a simple thumbnailing system to make documents quickly previewable in the admin interface.</p>
+<h3>Balancing Security and Usability</h3>
+<p>For a job application system, there&#39;s always tension between security requirements and ease of use. Make it too secure, and applicants struggle to complete the process. Make it too easy, and you risk data breaches.</p>
+<p>I addressed this by implementing graduated security measures:</p>
+<ul>
+<li>Basic information requires minimal authentication</li>
+<li>Sensitive information is protected behind stronger authentication checks</li>
+<li>Admin functions require full OAuth validation and role-based access control</li>
+<li>Session timeouts are balanced against the time needed to complete forms</li>
+</ul>
+<h2>Future Improvements</h2>
+<p>While the current system meets The Joshua Center&#39;s immediate needs, there are several areas for future enhancement:</p>
+<ol>
+<li><strong>Email Notification System</strong>: Automated updates when application status changes</li>
+<li><strong>Advanced Analytics</strong>: Reporting on application trends and outcomes</li>
+<li><strong>Employer Portal</strong>: Allow partner employers to review pre-screened applications</li>
+<li><strong>Mobile App</strong>: A companion app for staff to review applications on the go</li>
+<li><strong>Integration with Job Boards</strong>: Automatic posting to external job platforms</li>
+</ol>
+<p>The architecture was designed with these possibilities in mind, with clean separation between components that would make these additions straightforward.</p>
+<h2>What I Learned</h2>
+<p>Building this application reinforced my belief in the importance of deeply understanding the specific needs of users. Generic, off-the-shelf solutions often miss the nuances of how organizations actually work.</p>
+<p>Additionally, I learned that for non-profit organizations, sustainability is as important as functionality. By choosing technologies that are both powerful and maintainable, I created a solution that will serve The Joshua Center for years without becoming a technical burden.</p>
+<p>Perhaps most importantly, this project demonstrated the impact that thoughtfully designed software can have on organizations doing important work. The staff at The Joshua Center can now focus more energy on their mission rather than wrestling with spreadsheets and paperwork.</p>
+<p>The Job Application Tracker stands as a testament to what can be achieved when software development is approached not just as a technical challenge, but as a genuine attempt to solve human problems through technology.</p>
+</div>
+        <script>
+          // Re-run mermaid on post load with custom theme settings
+          if (typeof mermaid !== 'undefined') {
+            document.addEventListener('DOMContentLoaded', function() {
+              // Make sure chart text is white on dark background
+              mermaid.initialize({
+                theme: 'dark',
+                themeVariables: {
+                  nodeBorder: '#4d80e4',
+                  mainBkg: '#1e3a5f',
+                  nodeTextColor: '#ffffff',
+                  textColor: '#ffffff',
+                  labelTextColor: '#ffffff',
+                  clusterBkg: '#1e293b',
+                  clusterBorder: '#2d3748',
+                  edgeLabelBackground: '#1e293b',
+                  lineColor: '#4d80e4'
+                },
+                flowchart: { 
+                  useMaxWidth: true,
+                  htmlLabels: true
+                }
+              });
+              mermaid.init(undefined, '.mermaid');
+            });
+          }
+        </script>
+        <a href="/portfolio-blog/" class="back-link">← Back to Home</a>
+      </article>
+    
+    </main>
+    
+    <footer>
+      <p>&copy; 2025 Portfolio Blog</p>
+    </footer>
+  </div>
+  <script>
+    // Simple navigation without page reloads
+    document.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' && !e.target.getAttribute('target')) {
+        const href = e.target.getAttribute('href');
+        if (href.startsWith('/') && !href.startsWith('//')) {
+          e.preventDefault();
+          window.location.href = href;
+        }
+      }
+    });
+  </script>
+</body>
+</html>
