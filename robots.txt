@@ -1,0 +1,5 @@
+
+User-agent: *
+Allow: /
+
+Sitemap: https://crohnos.github.io/portfolio-blog/sitemap-index.xml
