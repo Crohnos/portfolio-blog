@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PostCard from '../components/PostCard';
+import FeaturedPostCard from '../components/FeaturedPostCard';
+import { getCollection } from 'astro:content';
+import { calculateReadingTime, generateExcerpt } from '../utils/blogHelpers';
+
+// Get base URL for links
+const baseUrl = import.meta.env.BASE_URL || '';
+
+// Get all blog posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first)
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Separate featured and regular posts
+const featuredPosts = sortedPosts.filter(post => post.data.featured);
+const regularPosts = sortedPosts.filter(post => !post.data.featured);
+
+// Process posts to add reading time and excerpts
+const processedFeaturedPosts = await Promise.all(
+  featuredPosts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await post.render();
+    
+    // Use plugin reading time if available, otherwise calculate
+    const readingTime = remarkPluginFrontmatter?.minutesRead 
+      ? `${remarkPluginFrontmatter.minutesRead} min read` 
+      : `${calculateReadingTime(post.body)} min read`;
+    
+    // Generate excerpt
+    const excerpt = post.data.description || generateExcerpt(post.body);
+    
+    return { post, readingTime, excerpt };
+  })
+);
+
+const processedRegularPosts = await Promise.all(
+  regularPosts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await post.render();
+    
+    // Use plugin reading time if available, otherwise calculate
+    const readingTime = remarkPluginFrontmatter?.minutesRead 
+      ? `${remarkPluginFrontmatter.minutesRead} min read` 
+      : `${calculateReadingTime(post.body)} min read`;
+    
+    // Generate excerpt
+    const excerpt = post.data.description || generateExcerpt(post.body);
+    
+    return { post, readingTime, excerpt };
+  })
+);
+---
+
+<BaseLayout>
+  <div class="hero">
+    <h1>John Graham's Portfolio</h1>
+    <p>Web developer, problem solver, and lifelong learner sharing projects and insights about web development and technology.</p>
+    
+    <div class="hero-buttons">
+      <a href="/blog/advanced-markdown-techniques" class="primary-button">Featured Article</a>
+      <a href="/categories" class="secondary-button">Browse by Topic</a>
+    </div>
+  </div>
+
+  {processedFeaturedPosts.length > 0 && (
+    <section class="featured-posts-section">
+      <h2 class="section-heading">Featured Projects</h2>
+      <div class="featured-posts">
+        {processedFeaturedPosts.map(({ post, readingTime, excerpt }) => (
+          <FeaturedPostCard 
+            post={post} 
+            baseUrl={baseUrl} 
+            readingTime={readingTime} 
+            excerpt={excerpt} 
+            client:load 
+          />
+        ))}
+      </div>
+    </section>
+  )}
+  
+  {processedRegularPosts.length > 0 && (
+    <section class="regular-posts-section">
+      <h2 class="section-heading">Recent Projects & Articles</h2>
+      <div class="posts-grid">
+        {processedRegularPosts.map(({ post, readingTime, excerpt }) => (
+          <PostCard 
+            post={post} 
+            baseUrl={baseUrl} 
+            readingTime={readingTime} 
+            excerpt={excerpt} 
+            client:load 
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

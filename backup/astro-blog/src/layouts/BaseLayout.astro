@@ -1,0 +1,137 @@
+---
+// Import required components and utilities
+import '../styles/global.css';
+
+// Define props with TypeScript interface
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: URL | string;
+  pageType?: 'website' | 'article';
+}
+
+// Destructure props with defaults
+const { 
+  title = 'John Graham | Web Developer Portfolio & Blog',
+  description = 'A portfolio and blog showcasing web development projects and technical writing by John Graham.',
+  image = '/images/default-social.jpg',
+  canonicalURL = new URL(Astro.url.pathname, Astro.site),
+  pageType = 'website',
+} = Astro.props;
+
+// Generate proper URLs
+const siteURL = Astro.site;
+const ogImageURL = new URL(image, siteURL).href;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={pageType} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImageURL} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={canonicalURL} />
+    <meta property="twitter:title" content={title} />
+    <meta property="twitter:description" content={description} />
+    <meta property="twitter:image" content={ogImageURL} />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+    
+    <!-- Code highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    
+    <!-- Mermaid.js for diagrams -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Initialize mermaid with custom theme for white text
+        mermaid.initialize({
+          startOnLoad: true,
+          theme: 'dark',
+          themeVariables: {
+            nodeBorder: '#4d80e4',
+            mainBkg: '#1e3a5f',
+            nodeTextColor: '#ffffff',
+            textColor: '#ffffff',
+            labelTextColor: '#ffffff',
+            clusterBkg: '#1e293b',
+            clusterBorder: '#2d3748',
+            edgeLabelBackground: '#1e293b',
+            lineColor: '#4d80e4'
+          },
+          flowchart: { 
+            useMaxWidth: true,
+            htmlLabels: true
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <a href="/" id="site-title">John Graham</a>
+          <nav>
+            <ul>
+              <li><a href="/" class={Astro.url.pathname === '/' ? 'active-nav-link' : ''}>Home</a></li>
+              <li><a href="/blog" class={Astro.url.pathname.startsWith('/blog') ? 'active-nav-link' : ''}>Blog</a></li>
+              <li><a href="/categories" class={Astro.url.pathname.startsWith('/categories') ? 'active-nav-link' : ''}>Categories</a></li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      
+      <main id="app">
+        <slot />
+      </main>
+      
+      <footer>
+        <div class="footer-content">
+          <div class="footer-links">
+            <a href="https://github.com/crohnos" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="/rss.xml">RSS</a>
+          </div>
+          <p>&copy; {new Date().getFullYear()} John Graham. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+
+    <!-- Initialize mermaid diagrams when loaded -->
+    <script>
+      // Re-run mermaid when content is loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        if (typeof mermaid !== 'undefined') {
+          mermaid.init(undefined, '.mermaid');
+        }
+
+        // Initialize highlight.js for code blocks
+        if (typeof hljs !== 'undefined') {
+          document.querySelectorAll('pre code').forEach((block) => {
+            hljs.highlightBlock(block);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

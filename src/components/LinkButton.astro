@@ -1,0 +1,49 @@
+---
+import { getBaseUrl } from "@/utils/getBaseUrl";
+
+export interface Props {
+  id?: string;
+  href: string;
+  class?: string;
+  ariaLabel?: string;
+  title?: string;
+  disabled?: boolean;
+  useBaseUrl?: boolean;
+}
+
+const {
+  id,
+  href,
+  class: className = "",
+  ariaLabel,
+  title,
+  disabled = false,
+  useBaseUrl = false,
+} = Astro.props;
+
+// Process the URL with base path if needed
+const processedHref = useBaseUrl ? getBaseUrl(href) : href;
+---
+
+{
+  disabled ? (
+    <span
+      id={id}
+      class:list={["group inline-block", className]}
+      title={title}
+      aria-disabled={disabled}
+    >
+      <slot />
+    </span>
+  ) : (
+    <a
+      id={id}
+      href={processedHref}
+      class:list={["group inline-block hover:text-accent", className]}
+      aria-label={ariaLabel}
+      title={title}
+    >
+      <slot />
+    </a>
+  )
+}

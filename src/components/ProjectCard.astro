@@ -1,0 +1,33 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  technologies: string[];
+}
+
+const { name, description, url, technologies } = Astro.props;
+---
+
+<div class="project-card bg-background p-5 rounded-lg border border-accent/20 hover:border-accent/50 transition-all">
+  <h3 class="text-xl font-bold mb-2">{name}</h3>
+  <p class="text-sm mb-4 opacity-80">{description}</p>
+  
+  <div class="tech-tags mb-4 flex flex-wrap gap-2">
+    {technologies.map(tech => (
+      <span class="text-xs py-1 px-2 bg-accent/10 rounded-full">{tech}</span>
+    ))}
+  </div>
+  
+  <a 
+    href={url} 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="inline-flex items-center text-sm font-medium text-accent hover:underline"
+  >
+    View Project
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  </a>
+</div>

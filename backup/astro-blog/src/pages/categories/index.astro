@@ -1,0 +1,128 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import CategoryBadge from '../../components/CategoryBadge.astro';
+
+// Get all blog posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+// Extract all categories
+const allCategories = allPosts.flatMap(post => post.data.categories);
+
+// Count posts for each category
+const categoryCount = allCategories.reduce((acc, category) => {
+  if (!category) return acc;
+  acc[category] = (acc[category] || 0) + 1;
+  return acc;
+}, {} as Record<string, number>);
+
+// Sort categories by count (highest first)
+const sortedCategories = Object.entries(categoryCount)
+  .sort(([, countA], [, countB]) => countB - countA)
+  .map(([name, count]) => ({ name, count }));
+---
+
+<BaseLayout title="Categories | Portfolio Blog" description="Browse blog posts by category">
+  <h1>Categories</h1>
+  
+  <p>Browse blog posts by category. Select a category to see related posts.</p>
+  
+  <div class="categories-list">
+    {sortedCategories.map(({ name, count }) => (
+      <div class="category-with-count">
+        <CategoryBadge category={name} />
+        <span class="category-count">({count})</span>
+      </div>
+    ))}
+  </div>
+  
+  <h2>All Categories</h2>
+  
+  {sortedCategories.map(({ name, count }) => (
+    <div class="category-section">
+      <h3 id={name.toLowerCase().replace(/ /g, '-')}>
+        {name} <span class="category-count">({count} posts)</span>
+      </h3>
+      
+      <ul class="category-posts">
+        {allPosts
+          .filter(post => post.data.categories.includes(name))
+          .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime())
+          .map(post => (
+            <li>
+              <a href={`/blog/${post.slug}`}>{post.data.title}</a>
+              <span class="post-date">
+                {new Date(post.data.date).toLocaleDateString('en-US', { 
+                  year: 'numeric', 
+                  month: 'short', 
+                  day: 'numeric' 
+                })}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  ))}
+</BaseLayout>
+
+<style>
+  h1 {
+    margin-bottom: 1rem;
+  }
+  
+  .categories-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .category-with-count {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .category-count {
+    font-size: 0.8rem;
+    color: var(--muted-color);
+  }
+  
+  .category-section {
+    margin-bottom: 3rem;
+  }
+  
+  .category-section h3 {
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .category-posts {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .category-posts li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  }
+  
+  .post-date {
+    font-size: 0.85rem;
+    color: var(--muted-color);
+  }
+  
+  @media (max-width: 768px) {
+    .category-posts li {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+  }
+</style>

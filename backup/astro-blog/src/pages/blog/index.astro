@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PostCard from '../../components/PostCard';
+import { getCollection } from 'astro:content';
+import { calculateReadingTime, generateExcerpt } from '../../utils/blogHelpers';
+
+// Get base URL for links
+const baseUrl = import.meta.env.BASE_URL || '';
+
+// Get all blog posts
+const allPosts = await getCollection('blog', ({ data }) => {
+  return !data.draft;
+});
+
+// Sort by date (newest first)
+const sortedPosts = allPosts.sort((a, b) => 
+  new Date(b.data.date).getTime() - new Date(a.data.date).getTime()
+);
+
+// Process posts to add reading time and excerpts
+const processedPosts = await Promise.all(
+  sortedPosts.map(async (post) => {
+    const { remarkPluginFrontmatter } = await post.render();
+    
+    // Use plugin reading time if available, otherwise calculate
+    const readingTime = remarkPluginFrontmatter?.minutesRead 
+      ? `${remarkPluginFrontmatter.minutesRead} min read` 
+      : `${calculateReadingTime(post.body)} min read`;
+    
+    // Generate excerpt
+    const excerpt = post.data.description || generateExcerpt(post.body);
+    
+    return { post, readingTime, excerpt };
+  })
+);
+---
+
+<BaseLayout title="Blog | John Graham" description="Read articles about web development, programming, and technology">
+  <h1 class="page-title">Blog</h1>
+
+  <p class="page-intro">
+    Explore articles about web development, programming, and my experiences as a software developer.
+    Browse by category or check out my latest posts below.
+  </p>
+  
+  <section class="blog-posts-section">
+    <div class="posts-grid">
+      {processedPosts.map(({ post, readingTime, excerpt }) => (
+        <PostCard 
+          post={post} 
+          baseUrl={baseUrl} 
+          readingTime={readingTime} 
+          excerpt={excerpt} 
+          client:load 
+        />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .page-intro {
+    font-size: 1.2rem;
+    color: var(--muted-color);
+    max-width: 800px;
+    margin-bottom: 3rem;
+  }
+  
+  .blog-posts-section {
+    margin-bottom: 4rem;
+  }
+</style>

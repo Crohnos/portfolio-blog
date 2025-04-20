@@ -1,0 +1,29 @@
+---
+interface Props {
+  category: string;
+  url?: string;
+}
+
+const { category, url = `/categories/${category.toLowerCase().replace(/ /g, '-')}` } = Astro.props;
+---
+
+<a href={url} class="category-badge">
+  {category}
+</a>
+
+<style>
+  .category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: var(--secondary-text-color, #ffffff);
+    background-color: var(--badge-bg, #1e3a5f);
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .category-badge:hover {
+    background-color: var(--badge-bg-hover, #4d80e4);
+  }
+</style>

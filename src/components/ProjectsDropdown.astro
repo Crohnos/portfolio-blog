@@ -1,0 +1,32 @@
+---
+import { PORTFOLIO_PROJECTS } from "@/constants";
+---
+
+<div class="dropdown relative group">
+  <button class="block px-4 py-3 text-center font-medium hover:text-accent sm:px-2 sm:py-1">
+    Projects
+    <span class="ml-1">▼</span>
+  </button>
+  <div class="dropdown-menu absolute left-0 hidden min-w-[200px] rounded bg-background py-2 shadow-lg group-hover:block dark:shadow-accent/20 z-10">
+    {
+      PORTFOLIO_PROJECTS.map(project => (
+        <a
+          href={project.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="block px-4 py-2 hover:bg-accent/10"
+        >
+          <div class="font-medium">{project.name}</div>
+          <div class="text-xs opacity-75">{project.description}</div>
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .dropdown-menu {
+    top: 100%;
+    transform: translateY(0.5rem);
+  }
+</style>

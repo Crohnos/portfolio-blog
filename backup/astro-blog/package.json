@@ -1,0 +1,35 @@
+{
+  "name": "portfolio-blog",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "homepage": "https://crohnos.github.io/portfolio-blog",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^1.1.0",
+    "@astrojs/react": "^3.0.3",
+    "@astrojs/rss": "^3.0.0",
+    "@astrojs/sitemap": "^3.0.0",
+    "@picocss/pico": "^2.1.1",
+    "astro": "^3.2.3",
+    "astro-icon": "^0.8.1",
+    "reading-time": "^1.5.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.3.1",
+    "gh-pages": "^6.3.0",
+    "prettier": "^3.0.3",
+    "prettier-plugin-astro": "^0.12.0",
+    "typescript": "^5.2.2"
+  }
+}
