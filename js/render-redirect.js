@@ -46,8 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         .render-redirect-content {
-          background-color: var(--background-color, #fff);
-          color: var(--text-color, #222);
+          background-color: var(--color-fill);
+          color: var(--color-text);
           border-radius: 8px;
           padding: 1.5rem;
           max-width: 450px;
@@ -70,8 +70,8 @@ document.addEventListener('DOMContentLoaded', () => {
           margin: 1.25rem auto;
           width: 40px;
           height: 40px;
-          border: 3px solid rgba(0, 0, 0, 0.1);
-          border-top-color: var(--accent-color, #3b82f6);
+          border: 3px solid rgba(128, 128, 128, 0.2);
+          border-top-color: var(--color-accent);
           border-radius: 50%;
           animation: spin 1s linear infinite;
         }
@@ -84,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         
         .render-redirect-actions button {
-          background-color: var(--accent-color, #3b82f6);
+          background-color: var(--color-accent);
           color: white;
           border: none;
           border-radius: 4px;
@@ -95,8 +95,8 @@ document.addEventListener('DOMContentLoaded', () => {
         
         .render-redirect-actions button.redirect-cancel {
           background-color: transparent;
-          color: var(--text-color, #222);
-          border: 1px solid var(--border-color, #ddd);
+          color: var(--color-text);
+          border: 1px solid rgba(128, 128, 128, 0.3);
         }
         
         @keyframes spin {
@@ -106,22 +106,6 @@ document.addEventListener('DOMContentLoaded', () => {
         @keyframes fadeIn {
           from { opacity: 0; }
           to { opacity: 1; }
-        }
-        
-        /* Dark mode adjustments */
-        .dark .render-redirect-content {
-          background-color: var(--background-color, #1a1a1a);
-          color: var(--text-color, #f5f5f5);
-        }
-        
-        .dark .render-redirect-spinner {
-          border-color: rgba(255, 255, 255, 0.1);
-          border-top-color: var(--accent-color, #3b82f6);
-        }
-        
-        .dark .render-redirect-actions button.redirect-cancel {
-          color: var(--text-color, #f5f5f5);
-          border: 1px solid var(--border-color, #444);
         }
       `;
       document.head.appendChild(style);
